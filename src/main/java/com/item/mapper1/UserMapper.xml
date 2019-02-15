@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.item.dao1.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.item.entity1.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="brithday" property="brithday" jdbcType="TIMESTAMP" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="adress" property="adress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, brithday, sex, adress
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.item.entity1.User" >
+    insert into user (id, username, brithday, 
+      sex, adress)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{brithday,jdbcType=TIMESTAMP}, 
+      #{sex,jdbcType=CHAR}, #{adress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.item.entity1.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="brithday != null" >
+        brithday,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="adress != null" >
+        adress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="brithday != null" >
+        #{brithday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="adress != null" >
+        #{adress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.item.entity1.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="brithday != null" >
+        brithday = #{brithday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="adress != null" >
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.item.entity1.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      brithday = #{brithday,jdbcType=TIMESTAMP},
+      sex = #{sex,jdbcType=CHAR},
+      adress = #{adress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
