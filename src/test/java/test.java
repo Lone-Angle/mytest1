@@ -15,6 +15,7 @@ public class test {
         List<Account> accounts = mapper.selectByExample(accountExample);
         System.out.println(accounts);
         System.out.println("你好吗");
+        System.out.println("2222");
 
 
 
