@@ -14,6 +14,8 @@ public class test {
         AccountMapper mapper = MySqlSession.getMapper(AccountMapper.class);
         List<Account> accounts = mapper.selectByExample(accountExample);
         System.out.println(accounts);
+        System.out.println("你好吗");
+
 
 
     }
